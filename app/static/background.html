@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Background · White Panda Labs</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;700&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body class="background-page">
+    <div class="bg-orb bg-orb--one"></div>
+    <div class="bg-orb bg-orb--two"></div>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="/">
+          <span class="brand-mark">WP</span>
+          <span class="brand-text">White Panda Labs</span>
+        </a>
+        <nav class="nav">
+          <a href="/#solver">Live Solver</a>
+          <a href="/#projects">Projects</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="section">
+      <div class="container narrow">
+        <div class="section-head" data-reveal>
+          <h1>Background Info</h1>
+          <p>Quick definitions of variables and concepts used in the solver interface.</p>
+        </div>
+
+        <section class="info-block" id="concepts" data-reveal>
+          <h2>Concepts</h2>
+          <p><strong>Explicit method</strong> updates the next time step using only known values from the current step. It is simple but requires a small time step for stability.</p>
+          <p><strong>Implicit method</strong> solves a linear system at each time step. It is stable for larger steps but more computationally intensive.</p>
+          <p><strong>Crank-Nicolson (CN)</strong> averages explicit and implicit updates for second-order accuracy in time, but can show oscillations near discontinuities.</p>
+          <p><strong>Rannacher stepping</strong> replaces the first CN step with multiple implicit substeps to damp early-time oscillations.</p>
+          <p><strong>Black-Scholes</strong> is a PDE model for European option prices that balances diffusion (volatility) and drift (risk-free rate).</p>
+        </section>
+
+        <section class="info-block" id="variables-heat" data-reveal>
+          <h2>Heat Equation Variables</h2>
+          <ul>
+            <li id="var-x"><strong>x</strong>: spatial variable along the 1D domain.</li>
+            <li id="var-t"><strong>t</strong>: time variable.</li>
+            <li id="var-a"><strong>a</strong>: left boundary of the spatial domain.</li>
+            <li id="var-b"><strong>b</strong>: right boundary of the spatial domain.</li>
+            <li id="var-l"><strong>l</strong>: final time (time horizon).</li>
+            <li id="var-n"><strong>n</strong>: number of spatial steps (grid resolution in x).</li>
+            <li id="var-m"><strong>m</strong>: number of time steps.</li>
+            <li id="var-f"><strong>f(x,t)</strong>: forcing term in the PDE.</li>
+            <li id="var-u0"><strong>u(x,0)</strong>: initial temperature profile.</li>
+            <li id="var-ua"><strong>u(a,t)</strong>: boundary value at the left endpoint.</li>
+            <li id="var-ub"><strong>u(b,t)</strong>: boundary value at the right endpoint.</li>
+            <li id="var-h"><strong>h</strong>: spatial step size, h = (b - a) / n.</li>
+            <li id="var-k"><strong>k</strong>: time step size, k = l / m.</li>
+            <li id="var-r-heat"><strong>r</strong>: stability ratio, r = k / h^2 (for explicit heat scheme).</li>
+          </ul>
+        </section>
+
+        <section class="info-block" id="variables-bs" data-reveal>
+          <h2>Black-Scholes Variables</h2>
+          <ul>
+            <li id="var-K"><strong>K</strong>: strike price of the option.</li>
+            <li id="var-T"><strong>T</strong>: time to maturity.</li>
+            <li id="var-r"><strong>r</strong>: risk-free interest rate (annualized).</li>
+            <li id="var-sigma"><strong>sigma</strong>: volatility (annualized).</li>
+            <li><strong>s</strong>: asset price variable in the PDE.</li>
+            <li><strong>s_max</strong>: truncation boundary, typically 4K.</li>
+          </ul>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div>
+          <strong>White Panda Labs</strong>
+          <p>Modeling tools and numerical explorations.</p>
+        </div>
+        <div class="footer-links">
+          <a href="/#solver">Live Solver</a>
+          <a href="/#projects">Projects</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>
