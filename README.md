@@ -13,6 +13,16 @@ uvicorn app.main:app --reload
 
 Open `http://127.0.0.1:8000` in your browser.
 
+## One-command dev
+
+```powershell
+.\scripts\dev.ps1
+```
+
+```bash
+./scripts/dev.sh
+```
+
 ## Notes
 - The solvers accept symbolic inputs for the heat equation using SymPy syntax (e.g., `sin(pi*x)` or `exp(-t)`).
 - Black-Scholes inputs for `r` and `sigma` are percentages per year.
