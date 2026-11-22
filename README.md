@@ -1,28 +1,31 @@
-# White Panda Labs Portfolio
+# White Panda Labs
 
-Portfolio site with a live Python backend that runs heat equation and Black-Scholes solvers and returns Matplotlib plots.
+FastAPI portfolio with interactive Black–Scholes pricing and a discrete hedging study. The heat-equation solver remains available through the API.
 
-## Run locally
+## Local preview
 
-```powershell
-python -m venv .venv
-.\.venv\Scripts\Activate.ps1
-pip install -r requirements.txt
-uvicorn app.main:app --reload
-```
+Python 3.12 is recommended.
 
-Open `http://127.0.0.1:8000` in your browser.
-
-## One-command dev
-
-```powershell
-.\scripts\dev.ps1
-```
-
-```bash
+```sh
+python3.12 -m venv .venv
+.venv/bin/python -m pip install -r requirements-dev.txt
 ./scripts/dev.sh
 ```
 
-## Notes
-- The solvers accept symbolic inputs for the heat equation using SymPy syntax (e.g., `sin(pi*x)` or `exp(-t)`).
-- Black-Scholes inputs for `r` and `sigma` are percentages per year.
+Open http://127.0.0.1:8000. Set `PORT` to use another local port.
+
+## Tests
+
+```sh
+PYTHONPATH=. .venv/bin/python tests/smoke_baseline.py
+PYTHONPATH=. .venv/bin/pytest -q
+node --check app/static/app.js
+```
+
+`app/static/copy.json` contains the approved production copy. The homepage template resolves these fields on the server. Solver responses retain the original `plots` contract; optional `include_analytical` and `error_mode` extend FD comparisons. Rates and volatility remain percentage inputs.
+
+The application uses a bounded calculation subprocess with a 30-second deadline. Matplotlib renders PNG surfaces; no numerical matrices are sent to the browser. Original finite-difference boundary conditions are preserved.
+
+Production and local preview use the same bundled EEG and hedging figures. The EEG panels crop the original image in CSS; either panel opens the full image. No external ZIP or review environment variables are required.
+
+Render deploys `main` using `render.yaml`. Polar Station copy follows the supplied CMU MSML CV.

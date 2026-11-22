@@ -18,7 +18,7 @@ def _init_condition(u0_expr, x_grid):
     if np.isscalar(values):
         values = np.full_like(x_grid, float(values))
     if np.any(~np.isfinite(values)):
-        values = np.nan_to_num(values, nan=0.0, posinf=0.0, neginf=0.0)
+        raise ValueError('Initial values must be finite.')
     return values
 
 

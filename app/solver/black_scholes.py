@@ -11,19 +11,12 @@ def analytical_surface(K, T, r, sigma, n, m):
 
     values = np.zeros((m + 1, n + 1))
 
-    for j, t_j in enumerate(t_grid):
-        tau = T - t_j
-        if tau == 0:
-            values[j, :] = np.maximum(s_grid - K, 0)
-            continue
-
-        for i, s_i in enumerate(s_grid):
-            if s_i == 0:
-                values[j, i] = 0
-                continue
-            d1 = (np.log(s_i / K) + (r + 0.5 * sigma ** 2) * tau) / (sigma * np.sqrt(tau))
-            d2 = d1 - sigma * np.sqrt(tau)
-            values[j, i] = s_i * norm.cdf(d1) - K * np.exp(-r * tau) * norm.cdf(d2)
+    tau = (T - t_grid[:-1])[:, None]
+    spots = s_grid[None, 1:]
+    d1 = (np.log(spots / K) + (r + 0.5 * sigma ** 2) * tau) / (sigma * np.sqrt(tau))
+    d2 = d1 - sigma * np.sqrt(tau)
+    values[:-1, 1:] = spots * norm.cdf(d1) - K * np.exp(-r * tau) * norm.cdf(d2)
+    values[-1] = np.maximum(s_grid - K, 0)
 
     return values, s_grid, t_grid
 

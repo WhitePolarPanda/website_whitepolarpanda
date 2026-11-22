@@ -1,0 +1,74 @@
+{
+  "page": {
+    "browser_title": "White Panda Labs | Yijia Zhu",
+    "title": "White Panda Labs",
+    "intro": "A few things I’ve been working on."
+  },
+  "navigation": {
+    "black_scholes": "Option pricing in 3D, with a closer look at hedging.",
+    "eeg": "How does what we imagine affect what we see?",
+    "polar_station": "A native agent development environment."
+  },
+  "black_scholes": {
+    "title": "Black–Scholes",
+    "intro": "Explore option prices in 3D. The research below looks at approximating a digital option with a call spread and hedging it at fixed intervals.",
+    "research": "Narrower spreads improve the payoff approximation and increase hedging error. In the 64-step experiment, the direct digital hedge had the lowest total RMSE among the strategies tested.",
+    "figure_caption": "Payoff approximation, hedging, and total error across call-spread widths, with 64 rebalancing intervals.",
+    "figure_alt": "Line chart of payoff approximation, pure hedging, total, and equal-capital total RMSE versus call-spread width at 64 rebalancing intervals.",
+    "labels": {
+      "view_3d": "3D",
+      "analytical": "Analytical",
+      "numerical": "Finite difference",
+      "signed_error": "Signed error",
+      "absolute_error": "Absolute error",
+      "time_to_expiry": "Time to expiry",
+      "reset": "Reset view",
+      "error_definition": "Finite difference − analytical"
+    },
+    "study_intro": "A digital option pays 1 if the underlying finishes at or above the strike. This study approximates that payoff with a normalized call spread and examines how spread width affects discrete Delta hedging.",
+    "study_setup": "S₀ = K = 1 · σ = 20% · T = 1 year · r = 0 · 64 rebalancing intervals",
+    "pricing_background": {
+      "model_title": "Model",
+      "model": "The Black–Scholes model prices a European call with payoff max(S − K, 0) at maturity, constant volatility, and a constant risk-free rate.",
+      "error": "Signed error is the selected numerical price minus the analytical price on the same grid. Absolute error is its magnitude.",
+      "methods_title": "Methods",
+      "analytical": "Analytical uses the closed-form Black–Scholes formula.",
+      "implicit": "Implicit solves a linear system at each time step.",
+      "cn": "CN Direct uses Crank–Nicolson time stepping for second-order accuracy in time.",
+      "rannacher": "Rannacher stepping starts with four implicit substeps before continuing with Crank–Nicolson to damp early oscillations.",
+      "parameters_title": "Parameters",
+      "K": "Strike price.",
+      "T": "Time to maturity, in years.",
+      "r": "Annual risk-free rate, entered as a percentage.",
+      "sigma": "Annual volatility, entered as a percentage.",
+      "n": "Number of space steps.",
+      "m": "Number of time steps.",
+      "axes": "The surface spans spot prices S from 0 to 4K and time to expiry from 0 to T. Height represents call price or pricing error."
+    },
+    "hedging_background": {
+      "payoff_title": "Call spread",
+      "payoff": "A normalized call spread buys a call at strike K and sells a call at K + h, with both positions scaled by 1/h. Its payoff rises from 0 to 1 between the strikes; h is the spread width.",
+      "hedge_title": "Discrete hedging",
+      "hedge": "The stock holding is reset to the call-spread Delta at 64 equally spaced rebalancing dates, with the balance held in cash. Direct digital Delta hedging provides the benchmark.",
+      "errors_title": "Error measures",
+      "payoff_error": "Payoff approximation measures the difference between the call-spread and digital payoffs at maturity.",
+      "hedging_error": "Pure hedging measures the portfolio’s terminal error relative to the call-spread payoff.",
+      "total_error": "Total measures the portfolio’s terminal error relative to the digital payoff, including the cross term between hedging and payoff approximation errors.",
+      "capital_error": "Equal-capital total adjusts initial cash so every strategy starts with the digital option price. All four measures are root mean square errors (RMSE)."
+    }
+  },
+  "eeg": {
+    "title": "EEG & Perception",
+    "intro": "This study asks whether emotional imagery changes adolescents’ visual judgments and EEG responses. It compares pure perception with congruent and incongruent imagery.",
+    "figure_caption": "Average ERP waveforms and scalp maps for pure perception, congruent imagery, and incongruent imagery in the N1 and P300 time windows.",
+    "figure_alt": "Two panels show group-average N1 and P300 ERP waveforms and scalp maps for pure perception, congruent imagery, and incongruent imagery."
+  },
+  "polar_station": {
+    "title": "Polar Station",
+    "intro": "A native agent development environment unifying local and SSH workspaces, terminal sessions, AI coding agents, and voice input.",
+    "source_button": "View source",
+    "mac_trial_button": "Try on Mac",
+    "mac_trial_detail": "Apple Silicon",
+    "development": "Built with AI coding agents using modular Rust infrastructure and Ghostty terminals. A Godot-based 3D data analysis and visualization platform is in development, with a preliminary prototype available."
+  }
+}

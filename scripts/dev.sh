@@ -1,13 +1,14 @@
 #!/usr/bin/env bash
 set -euo pipefail
-
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-ROOT_DIR="${SCRIPT_DIR}/.."
-VENV_DIR="${ROOT_DIR}/.venv"
-
-if [ ! -d "${VENV_DIR}" ]; then
-  python -m venv "${VENV_DIR}"
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+cd "$ROOT_DIR"
+if [ ! -x .venv/bin/python ]; then
+  "${PYTHON:-python3.12}" -m venv .venv
+  .venv/bin/python -m pip install -r requirements.txt
 fi
-
-source "${VENV_DIR}/bin/activate"
-uvicorn app.main:app --reload
+# Keep the previous preview flag as a compatibility alias.
+if [ "$#" -ne 0 ] && [ "${1:-}" != "--review" ]; then
+  echo "Usage: $0 [--review]" >&2
+  exit 2
+fi
+exec .venv/bin/python -m uvicorn app.main:app --host 127.0.0.1 --port "${PORT:-8000}"

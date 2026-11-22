@@ -1,180 +1,8 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>White Panda Modeling Tools</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;700&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="/static/styles.css" />
-  </head>
-  <body>
-    <div class="bg-orb bg-orb--one"></div>
-    <div class="bg-orb bg-orb--two"></div>
-    <header class="site-header">
-      <div class="container header-inner">
-        <a class="brand" href="/">
-          <span class="brand-mark">WP</span>
-          <span class="brand-text">White Panda Labs</span>
-        </a>
-        <nav class="nav">
-          <a href="#projects">Projects</a>
-          <a href="#solver">Live Solver</a>
-          <a href="/background#concepts">Background</a>
-        </nav>
-      </div>
-    </header>
-
-    <main>
-      <section class="hero">
-        <div class="container hero-grid">
-          <div class="hero-copy" data-reveal>
-            <p class="eyebrow">Portfolio · Modeling tools</p>
-            <h1>A white panda building modeling tools.</h1>
-            <p class="lead">
-              I build numerical solvers and visual diagnostics for PDEs and option pricing.
-              Explore the heat equation and Black-Scholes models, then run live experiments with
-              the solvers below.
-            </p>
-            <div class="hero-actions">
-              <a class="btn primary" href="#solver">Try the solvers</a>
-              <a class="btn ghost" href="#projects">See projects</a>
-            </div>
-            <div class="hero-meta">
-              <div>
-                <strong>Focus</strong>
-                <span>Finite differences, stability, accuracy</span>
-              </div>
-              <div>
-                <strong>Tools</strong>
-                <span>Python, NumPy, SciPy, Matplotlib</span>
-              </div>
-            </div>
-          </div>
-          <div class="hero-panel" data-reveal>
-            <div class="hero-panel__card">
-              <h3>Featured Toolkit</h3>
-              <p>Heat equation + Black-Scholes solvers with implicit, explicit, and CN schemes.</p>
-              <ul>
-                <li>Interactive parameter entry</li>
-                <li>Matplotlib surface plots</li>
-                <li>Analytical comparison toggles</li>
-              </ul>
-            </div>
-            <div class="hero-panel__card accent">
-              <h3>What I care about</h3>
-              <p>Tradeoffs: accuracy vs. stability, and where oscillations appear.</p>
-              <a class="text-link" href="/background#concepts">Read the background notes →</a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="projects" class="section">
-        <div class="container">
-          <div class="section-head" data-reveal>
-            <h2>Projects</h2>
-            <p>Current work plus room for what is next.</p>
-          </div>
-          <div class="project-grid">
-            <article class="project-card" data-reveal>
-              <div class="project-card__header">
-                <h3>Black-Scholes + Heat Equation Toolkit</h3>
-                <span class="pill">Ready</span>
-              </div>
-              <p>
-                Numerical approximations for the Black-Scholes PDE with stability diagnostics,
-                plus 1D heat equation solvers across explicit, implicit, and Crank-Nicolson schemes.
-              </p>
-              <div class="project-tags">
-                <span>Finite Differences</span>
-                <span>Rannacher stepping</span>
-                <span>Matplotlib</span>
-              </div>
-              <a class="btn small" href="#solver">Run the models</a>
-            </article>
-            <article class="project-card muted" data-reveal>
-              <div class="project-card__header">
-                <h3>More projects</h3>
-                <span class="pill ghost">Soon</span>
-              </div>
-              <p>Space reserved for upcoming modeling tools and research experiments.</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section id="solver" class="section solver-section">
-        <div class="container">
-          <div class="section-head" data-reveal>
-            <h2>Live Solver</h2>
-            <p>Enter parameters and generate the Matplotlib surface plots on demand.</p>
-          </div>
-
-          <div class="solver-tabs" data-reveal>
-            <button class="tab active" data-target="heat">Heat Equation</button>
-            <button class="tab" data-target="black">Black-Scholes</button>
-          </div>
-
-          <div class="solver-panel active" id="panel-heat" data-panel="heat" data-reveal>
-            <form id="heat-form" class="solver-form">
-              <div class="form-row">
-                <label for="heat-method">Method</label>
-                <select id="heat-method" name="method">
-                  <option value="explicit">Explicit</option>
-                  <option value="implicit">Implicit</option>
-                  <option value="cn">Crank-Nicolson</option>
-                </select>
-                <a class="form-help" href="/background#concepts">Method notes</a>
-              </div>
-              <div class="form-grid">
-                <label>
-                  <span>f(<a href="/background#var-x">x</a>, <a href="/background#var-t">t</a>)</span>
-                  <input type="text" name="f_expr" value="0" />
-                </label>
-                <label>
-                  <span>u(<a href="/background#var-x">x</a>, 0)</span>
-                  <input type="text" name="u0_expr" value="sin(pi*x)" />
-                </label>
-                <label>
-                  <span>u(<a href="/background#var-a">a</a>, <a href="/background#var-t">t</a>)</span>
-                  <input type="text" name="ua_expr" value="0" />
-                </label>
-                <label>
-                  <span>u(<a href="/background#var-b">b</a>, <a href="/background#var-t">t</a>)</span>
-                  <input type="text" name="ub_expr" value="0" />
-                </label>
-                <label>
-                  <span><a href="/background#var-a">a</a> (left endpoint)</span>
-                  <input type="number" step="0.1" name="a" value="0" />
-                </label>
-                <label>
-                  <span><a href="/background#var-b">b</a> (right endpoint)</span>
-                  <input type="number" step="0.1" name="b" value="1" />
-                </label>
-                <label>
-                  <span><a href="/background#var-l">l</a> (time horizon)</span>
-                  <input type="number" step="0.1" name="l" value="0.5" />
-                </label>
-                <label>
-                  <span><a href="/background#var-n">n</a> (space steps)</span>
-                  <input type="number" step="1" name="n" value="40" />
-                </label>
-                <label>
-                  <span><a href="/background#var-m">m</a> (time steps)</span>
-                  <input type="number" step="1" name="m" value="200" />
-                </label>
-              </div>
-              <div class="form-actions">
-                <button class="btn primary" type="submit">Generate plot</button>
-                <span class="form-status" id="heat-status"></span>
-              </div>
-            </form>
-          </div>
-
-          <div class="solver-panel" id="panel-black" data-panel="black" data-reveal>
-            <form id="black-form" class="solver-form">
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{{page.browser_title}}</title><meta name="description" content="{{page.intro}}"><link rel="icon" href="/static/favicon.svg"><link rel="stylesheet" href="/static/styles.css"><script defer src="/static/app.js"></script></head><body id="top">
+<header class="mast"><a class="brand" href="/" aria-label="White Panda Labs home">wp<span>White Panda Labs</span></a><nav aria-label="Projects"><a href="#black-scholes">Black–Scholes</a><a href="#eeg">EEG & Perception</a><a href="#polar-station">Polar Station</a></nav></header>
+<main><section class="hero"><h1>{{page.title}}<span aria-hidden="true">.</span></h1><p>{{page.intro}}</p><nav class="project-index" aria-label="Explore projects"><a href="#black-scholes"><span class="index-number">01</span><strong>Black–Scholes <b>↗</b></strong><span>{{navigation.black_scholes}}</span></a><a href="#eeg"><span class="index-number">02</span><strong>EEG & Perception <b>↗</b></strong><span>{{navigation.eeg}}</span></a><a href="#polar-station"><span class="index-number">03</span><strong>Polar Station <b>↗</b></strong><span>{{navigation.polar_station}}</span></a></nav></section>
+<div id="projects"></div><section class="project" id="black-scholes"><div class="project-heading"><span class="section-number">01</span><h2>{{black_scholes.title}}</h2><p>{{black_scholes.intro}}</p></div><div class="workspace" id="solver"><div class="tabs" role="tablist" aria-label="Black–Scholes tools"><button role="tab" id="tab-black" aria-controls="panel-black" aria-selected="true" data-tab="black">Option Pricing</button><button role="tab" id="tab-study" aria-controls="panel-study" aria-selected="false" tabindex="-1" data-tab="study">Hedging Study</button></div>
+<section role="tabpanel" id="panel-black" aria-labelledby="tab-black"><form id="black-form" class="solver-form">
               <div class="form-row">
                 <label for="black-method">Method</label>
                 <select id="black-method" name="method">
@@ -183,72 +11,47 @@
                   <option value="cn_direct">CN direct</option>
                   <option value="rannacher">Rannacher stepping</option>
                 </select>
-                <a class="form-help" href="/background#concepts">Model notes</a>
+
               </div>
               <div class="toggle-row">
                 <label class="toggle">
                   <input type="checkbox" name="compare_analytical" id="compare-analytical" checked />
-                  <span>Show comparison with analytical solution</span>
+                  <span>Show error</span>
                 </label>
               </div>
               <div class="form-grid">
                 <label>
-                  <span><a href="/background#var-K">K</a> (strike price)</span>
-                  <input type="number" step="0.1" name="K" value="100" />
+                  <span>K (strike price)</span>
+                  <input required type="number" step="0.1" name="K" value="100" />
                 </label>
                 <label>
-                  <span><a href="/background#var-T">T</a> (maturity)</span>
-                  <input type="number" step="0.1" name="T" value="1" />
+                  <span>T (maturity)</span>
+                  <input required type="number" step="0.1" name="T" value="1" />
                 </label>
                 <label>
-                  <span><a href="/background#var-r">r</a> (% per year)</span>
-                  <input type="number" step="0.1" name="r" value="5" />
+                  <span>r (% per year)</span>
+                  <input required type="number" step="0.1" name="r" value="5" />
                 </label>
                 <label>
-                  <span><a href="/background#var-sigma">sigma</a> (% per year)</span>
-                  <input type="number" step="0.1" name="sigma" value="20" />
+                  <span>sigma (% per year)</span>
+                  <input required type="number" step="0.1" name="sigma" value="20" />
                 </label>
                 <label>
-                  <span><a href="/background#var-n">n</a> (space steps)</span>
-                  <input type="number" step="1" name="n" value="50" />
+                  <span>n (space steps)</span>
+                  <input required type="number" step="1" name="n" value="50" />
                 </label>
                 <label>
-                  <span><a href="/background#var-m">m</a> (time steps)</span>
-                  <input type="number" step="1" name="m" value="50" />
+                  <span>m (time steps)</span>
+                  <input required type="number" step="1" name="m" value="50" />
                 </label>
               </div>
               <div class="form-actions">
-                <button class="btn primary" type="submit">Generate plot</button>
+                <button class="btn primary" type="submit">Run</button>
                 <span class="form-status" id="black-status"></span>
               </div>
-            </form>
-          </div>
-
-          <div class="results" id="results" data-reveal>
-            <div class="results-head">
-              <h3>Results</h3>
-              <p>Plots appear here after you run a solver.</p>
-            </div>
-            <div class="results-grid" id="results-grid"></div>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer class="site-footer">
-      <div class="container footer-inner">
-        <div>
-          <strong>White Panda Labs</strong>
-          <p>A white panda building modeling tools.</p>
-        </div>
-        <div class="footer-links">
-          <a href="#projects">Projects</a>
-          <a href="#solver">Live Solver</a>
-          <a href="/background#concepts">Background</a>
-        </div>
-      </div>
-    </footer>
-
-    <script src="/static/app.js"></script>
-  </body>
-</html>
+            </form><div class="results-grid" id="results-black" aria-live="polite"></div><details class="background" id="background"><summary>Background</summary><div class="background-grid"><section id="pricing-model"><h3>{{black_scholes.pricing_background.model_title}}</h3><p>{{black_scholes.pricing_background.model}}</p><p>{{black_scholes.pricing_background.error}}</p></section><section id="concepts"><h3>{{black_scholes.pricing_background.methods_title}}</h3><p>{{black_scholes.pricing_background.analytical}}</p><p>{{black_scholes.pricing_background.implicit}}</p><p>{{black_scholes.pricing_background.cn}}</p><p>{{black_scholes.pricing_background.rannacher}}</p></section><section id="variables-bs"><h3>{{black_scholes.pricing_background.parameters_title}}</h3><dl><dt id="var-K">K</dt><dd>{{black_scholes.pricing_background.K}}</dd><dt id="var-T">T</dt><dd>{{black_scholes.pricing_background.T}}</dd><dt id="var-r">r</dt><dd>{{black_scholes.pricing_background.r}}</dd><dt id="var-sigma">σ</dt><dd>{{black_scholes.pricing_background.sigma}}</dd><dt id="var-n">n</dt><dd>{{black_scholes.pricing_background.n}}</dd><dt id="var-m">m</dt><dd>{{black_scholes.pricing_background.m}}</dd></dl><p>{{black_scholes.pricing_background.axes}}</p></section></div></details></section>
+<section role="tabpanel" id="panel-study" aria-labelledby="tab-study" hidden><p class="study-copy">{{black_scholes.study_intro}}</p><p class="study-setup">{{black_scholes.study_setup}}</p><figure><button class="figure-button" data-image="/static/tradeoff.png" aria-label="Enlarge chart"><img src="/static/tradeoff.png" loading="lazy" width="1540" height="901" alt="{{black_scholes.figure_alt}}"></button><figcaption>{{black_scholes.figure_caption}}</figcaption></figure><p class="study-copy study-finding">{{black_scholes.research}}</p><details class="background" id="hedging-background"><summary>Background</summary><div class="background-grid"><section id="hedging-payoff"><h3>{{black_scholes.hedging_background.payoff_title}}</h3><p>{{black_scholes.hedging_background.payoff}}</p></section><section id="hedging-hedge"><h3>{{black_scholes.hedging_background.hedge_title}}</h3><p>{{black_scholes.hedging_background.hedge}}</p></section><section id="hedging-errors"><h3>{{black_scholes.hedging_background.errors_title}}</h3><p>{{black_scholes.hedging_background.payoff_error}}</p><p>{{black_scholes.hedging_background.hedging_error}}</p><p>{{black_scholes.hedging_background.total_error}}</p><p>{{black_scholes.hedging_background.capital_error}}</p></section></div></details></section></div></section>
+<section class="project editorial" id="eeg"><div class="eeg-copy"><div class="project-heading"><span class="section-number">02</span><h2>{{eeg.title}}</h2></div><div class="project-body"><p>{{eeg.intro}}</p></div></div>{{eeg_figure}}</section>
+<section class="project station" id="polar-station"><div class="station-inner"><div class="project-heading"><span class="section-number">03</span><h2>{{polar_station.title}}</h2></div><div class="project-body"><div class="station-description"><p class="station-lead">{{polar_station.intro}}</p><p class="station-detail">{{polar_station.development}}</p></div><div class="links"><a href="https://github.com/lionantbear/polar-station/">{{polar_station.source_button}} <span aria-hidden="true">↗</span></a><a href="https://github.com/lionantbear/polar-station/releases">{{polar_station.mac_trial_button}} <span aria-hidden="true">↗</span><small>{{polar_station.mac_trial_detail}}</small></a></div></div></div></section>
+</main><footer><span>White Panda Labs</span><a href="#top">Back to top ↑</a></footer>
+<dialog id="image-dialog"><div class="viewer-toolbar"><button id="zoom-in" aria-label="Zoom in">+</button><button id="zoom-reset">{{black_scholes.labels.reset}}</button><a id="image-download" download="plot.png">Download PNG</a><button id="viewer-close" aria-label="Close image">Close ×</button></div><div class="viewer-scroll"><img id="viewer-image" alt=""></div></dialog></body></html>
